@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+   redis:
+     container_name: redis
+     hostname: redis
+     image: redis:4-alpine3.9
+     ports:
+       - "6379:6379"
+     restart: unless-stopped
