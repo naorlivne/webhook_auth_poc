@@ -1,6 +1,6 @@
 import redis, os, sys, secrets
 from functions.hashing.hashing import *
-from flask import request, Flask
+from flask import request, Flask, json
 
 
 # get setting from envvar with failover from config/conf.json file if envvar not set
@@ -14,6 +14,7 @@ def get_conf_setting(setting, default_value=None):
         elif setting_value == "false":
             return False
     except Exception as e:
+        print(e, file=sys.stderr)
         print("missing " + setting + " config setting", file=sys.stderr)
         print("missing " + setting + " config setting")
         os._exit(2)
@@ -45,7 +46,7 @@ def receiver():
 
     # check that the response from the callback is HTTP status 200
 
-    # if the status of the reply is 200 read the unhashed token and check that it is infact the same as the hashed one
+    # if the status of the reply is 200 read the unhashed token and check that it is in fact the same as the hashed one
 
     # if the hash and unhashed are of the same key it works and return a good reply
 
@@ -57,14 +58,20 @@ def receiver():
 # against
 @app.route('/webhook', methods=["POST"])
 def webhook():
-    # find the unhashed value
-    unhashed = r.get(request.data.decode('utf-8'))
-    # if it's in the db return it
-    if unhashed is not None:
+    # find the unhashed value and delete it from the backend db
+    request_dict = request.json
+    unhashed = r.get(request_dict["hash"])
+    r.delete(request_dict["hash"])
+    # find the requested url that the hash was sent to and delete it from the backend db
+    requested_url = r.get(request_dict["hash"] + "_url")
+    r.delete(request_dict["hash"] + "_url")
+    # if it's in the db return it and the requested url is the same one as the one the request was sent to originally
+    if (unhashed is not None) and requested_url == request.json["url"]:
         return unhashed, 200
     # otherwise return not allowed
     else:
         return "not allowed", 401
+
 
 # the example endpoint - this is the endpoint a user will contact to check the auth works\doesn't works as part of the
 # example POC
@@ -74,6 +81,8 @@ def example():
     # create a random unhashed one time use pass and a hash of it
 
     # setex the it into the DB with 600 seconds ttl
+
+    # setex the url that the hash is going to be sent to into the DB with 600 seconds ttl
 
     # send the request to the receiver API
 
