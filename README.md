@@ -2,7 +2,7 @@
 
 ## API to API Authentication without the need of saving any secrets at all!
 
-Proof of concept for a webhook\callback based authentication which allows any API to know that any other API is in fact who it claim it is without having to configure any preshared secrets between them (it ensures that the URL of the requester is really who he claim it is).
+Python3 based proof of concept for a webhook\callback based authentication which allows any API to know that any other API is in fact who it claim it is without having to configure any preshared secrets between them (it ensures that the URL of the requester is really who he claim it is).
 
 The basic idea is that one can use webhooks as the authentication method, this allows one to connect API's to each other in a secure fashion without having to worry about keeping secrets as the every request has a random one use token generated for it in the requester API (the one which sends the request), the requester then hashes the one use token and saves (be it in memory or in a backend DB) the following pieces of information:
 
@@ -41,7 +41,7 @@ there are 3 api endpoints available in this POC:
 * /webhook - used as the requester API webhook endpoint that is sent to the receiver API to confirm authentication against
 * /example - sending any request to the /example endpoint will trigger the server to try to authenticate against the `RECEIVER_WEBHOOK_URL` with the `REQUESTER_WEBHOOK_URL` being used as the callback URL
 
-I used bcrypt in this POC but any hashing algorithm is possible to use.
+I used bcrypt in this POC but any secure hashing algorithm is possible to use provided that both sides of the authentication agreed on beforehand (bcrypt being the default algorithm used otherwise).
 
 I also used Redis as the backend DB but it's possible to use any DB or even save the data in memory for monolithic API's.
 
