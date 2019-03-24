@@ -2,7 +2,7 @@
 
 ## API to API Authentication without the need of saving any secrets at all!
 
-Proof of concept for a webhook\callback based authentication
+Proof of concept for a webhook\callback based authentication which allows any API to know that any other API is in fact who it claim it is without having to configure any preshared secrets between them (it ensures that the URL of the requester is really who he claim it is).
 
 The basic idea is that one can use webhooks as the authentication method, this allows one to connect API's to each other in a secure fashion without having to worry about keeping secrets as the every request has a random one use token generated for it in the requester API (the one which sends the request), the requester then hashes the one use token and saves (be it in memory or in a backend DB) the following pieces of information:
 
