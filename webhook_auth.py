@@ -38,19 +38,22 @@ if redis_port is not None and redis_host is not None:
 # the receiver endpoint - this is the api2api endpoint that will be contacted by the requester api
 @app.route('/receiver', methods=["GET"])
 def receiver():
-    # TODO - finish
     # check the request authorization header and get the hashed value and webhook address from it
-
+    auth_header = request.headers['Authorization']
+    auth_type, auth_url, auth_hashed_token = auth_header.split(" ")
     # callback to the webhook of the sender in the authorization header with the hashed value in the body
-
+    payload = json.dumps({"hash": auth_hashed_token, "url": receiver_webhook_url})
+    headers = {'Content-Type': "application/json"}
+    response = requests.request("POST", auth_url, data=payload, headers=headers)
     # check that the response from the callback is HTTP status 200
-
-    # if the status of the reply is 200 read the unhashed token and check that it is in fact the same as the hashed one
-
-    # if the hash and unhashed are of the same key it works and return a good reply
-
+    if response.status_code == 200:
+        # if the unhashed token is in fact the same as the hashed one
+        if check_secret_matches(response.text, auth_hashed_token):
+            # if the hash and unhashed are of the same key it works and return a good reply
+            return "{\"allowed\": true}", 200
     # otherwise return 401 and a message that it blocked the attempt
-    return "auth works", 200
+    else:
+        return "{\"allowed\": false}", 401
 
 
 # the webhook endpoint - this is the api2api endpoint that the receiver endpoint will use to authenticate the request
@@ -65,11 +68,11 @@ def webhook():
     requested_url = r.get(request_dict["hash"] + "_url")
     r.delete(request_dict["hash"] + "_url")
     # if it's in the db return it and the requested url is the same one as the one the request was sent to originally
-    if (unhashed is not None) and requested_url == request.json["url"]:
-        return unhashed, 200
+    if (unhashed is not None) and (requested_url.decode('utf-8') == request.json["url"]):
+        return unhashed.decode('utf-8'), 200
     # otherwise return not allowed
     else:
-        return "not allowed", 401
+        return "{\"allowed\": false}", 401
 
 
 # the example endpoint - this is the endpoint a user will contact to check the auth works\doesn't works as part of the
@@ -88,7 +91,7 @@ def example():
     headers = {'Authorization': "Webhook " + requester_webhook_url + " " + hashed_token}
     response = requests.request("GET", receiver_webhook_url, data=payload, headers=headers)
     # display the result you got back from the receiver endpoint
-    return response.json(), 200
+    return json.dumps(response.json()), 200
 
 
 # used for when running with the 'ENV' envvar set to dev to open a new thread with flask builtin web server
