@@ -60,4 +60,4 @@ the docker compose example includes 5 containers:
 start it by running first cloning the repo then running from the repo root folder `docker-compose up` and then you can:
 
 * connect to the /example API endpoint of alice on port 5000 and see that it works by going to `http://127.0.0.1:5000/example` which will reply to you with `{"allowed": true}`
-* connect to the /example API of eve on port 5001 and see that it works by going to `http://127.0.0.1:5001/example` which will reply to you with `{"allowed": false}`
+* connect to the /example API of eve on port 5001 and see that it fails to authenticate by going to `http://127.0.0.1:5001/example` which will reply to you with `{"allowed": false}`
