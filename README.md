@@ -45,6 +45,8 @@ I used bcrypt in this POC but any hashing algorithm is possible to use.
 
 I also used Redis as the backend DB but it's possible to use any DB or even save the data in memory for monolithic API's.
 
+For simplicity sake this POC uses HTTP rather the HTTPS, it is highly recommended that you use HTTPS on all steps in the process as it guards against MITM attacks.
+
 This is a very basic POC designed to just show that the underlaying concept works so be aware that the code may very well be ugly.
 
 ## example docker-compose

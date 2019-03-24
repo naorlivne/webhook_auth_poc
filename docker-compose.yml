@@ -1,17 +1,58 @@
 version: '3'
 
 services:
-   redis:
-     container_name: redis
-     hostname: redis
+   # the redis backend DB for the alice container
+   redis_alice:
+     container_name: redis_alice
+     hostname: redis_alice
      image: redis:4-alpine3.9
-     ports:
-       - "6379:6379"
      restart: unless-stopped
 
+  # the redis backend DB for the eve container
+   redis_eve:
+     container_name: redis_eve
+     hostname: redis_eve
+     image: redis:4-alpine3.9
+     restart: unless-stopped
 
-# TODO - create "alice" requester API container
+# "Alice" container which acts as a legitimate requester API
+   alice:
+     container_name: alice
+     hostname: alice
+     image: naorlivne/webhook_auth_poc
+     ports:
+       - "5000:80"
+     restart: unless-stopped
+     environment:
+       PYTHONUNBUFFERED: 1
+       REDIS_HOST: redis_alice
+       REDIS_PORT: 6379
+       RECEIVER_WEBHOOK_URL: http://bob/receiver
+       REQUESTER_WEBHOOK_URL: http://alice/webhook
 
-# TODO - create "bob" receiver API container
+# "Eve" container which acts as an attacker and tries to impersonate "alice" webhook url (which will fail)
+   eve:
+     container_name: eve
+     hostname: eve
+     image: naorlivne/webhook_auth_poc
+     ports:
+       - "5001:80"
+     restart: unless-stopped
+     environment:
+       PYTHONUNBUFFERED: 1
+       REDIS_HOST: redis_alice
+       REDIS_PORT: 6379
+       RECEIVER_WEBHOOK_URL: http://bob/receiver
+       REQUESTER_WEBHOOK_URL: http://alice/webhook
 
-# TODO - create "eve" attacker API container
+# a "Bob" container which acts as the receiver API
+   bob:
+     container_name: bob
+     hostname: bob
+     image: naorlivne/webhook_auth_poc
+     ports:
+       - "5000:80"
+     restart: unless-stopped
+     environment:
+       PYTHONUNBUFFERED: 1
+       RECEIVER_WEBHOOK_URL: http://bob/receiver

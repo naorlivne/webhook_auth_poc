@@ -41,7 +41,8 @@ def receiver():
     # check the request authorization header and get the hashed value and webhook address from it
     auth_header = request.headers['Authorization']
     auth_type, auth_url, auth_hashed_token = auth_header.split(" ")
-    # callback to the webhook of the sender in the authorization header with the hashed value in the body
+    # callback to the webhook of the sender in the authorization header with the hashed value in the body & the url of
+    # itself
     payload = json.dumps({"hash": auth_hashed_token, "url": receiver_webhook_url})
     headers = {'Content-Type': "application/json"}
     response = requests.request("POST", auth_url, data=payload, headers=headers)
