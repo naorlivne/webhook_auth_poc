@@ -40,7 +40,7 @@ services:
      restart: unless-stopped
      environment:
        PYTHONUNBUFFERED: 1
-       REDIS_HOST: redis_alice
+       REDIS_HOST: redis_eve
        REDIS_PORT: 6379
        RECEIVER_WEBHOOK_URL: http://bob/receiver
        REQUESTER_WEBHOOK_URL: http://alice/webhook
@@ -50,8 +50,6 @@ services:
      container_name: bob
      hostname: bob
      image: naorlivne/webhook_auth_poc
-     ports:
-       - "5000:80"
      restart: unless-stopped
      environment:
        PYTHONUNBUFFERED: 1
