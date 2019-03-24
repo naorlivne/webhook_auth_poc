@@ -1,4 +1,4 @@
-Nebula contributors
+webhook_auth_poc contributors
 ===================
 
 * **[Naor Livne](https://github.com/naorlivne)**
