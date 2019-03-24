@@ -55,7 +55,7 @@ the docker compose example includes 5 containers:
 
 * a "Alice" container which acts as a legitimate requester API + a backend redis DB container
 * a "Bob" container which acts as the receiver API
-* a "Eve" container which acts as an attacker and tries to impersonate "alice" webhook url (which will fail) + a backend redis DB container
+* a "Eve" container which acts as an attacker and tries to impersonate "Alice" webhook url (which will fail) + a backend redis DB container
 
 start it by running first cloning the repo then running from the repo root folder `docker-compose up` and then you can:
 
