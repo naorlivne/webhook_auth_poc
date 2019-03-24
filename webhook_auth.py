@@ -52,6 +52,9 @@ def receiver():
         if check_secret_matches(response.text, auth_hashed_token):
             # if the hash and unhashed are of the same key it works and return a good reply
             return "{\"allowed\": true}", 200
+        # otherwise return 401 and a message that it blocked the attempt
+        else:
+            return "{\"allowed\": false}", 401
     # otherwise return 401 and a message that it blocked the attempt
     else:
         return "{\"allowed\": false}", 401
