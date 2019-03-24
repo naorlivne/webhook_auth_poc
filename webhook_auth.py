@@ -92,7 +92,7 @@ def example():
     headers = {'Authorization': "Webhook " + requester_webhook_url + " " + hashed_token}
     response = requests.request("GET", receiver_webhook_url, data=payload, headers=headers)
     # display the result you got back from the receiver endpoint
-    return json.dumps(response.json()), 200
+    return json.dumps(response.json()), response.status_code
 
 
 # used for when running with the 'ENV' envvar set to dev to open a new thread with flask builtin web server
