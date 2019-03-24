@@ -1,4 +1,4 @@
-import redis, os, sys, secrets
+import redis, os, sys, secrets, requests
 from functions.hashing.hashing import *
 from flask import request, Flask, json
 
@@ -25,11 +25,10 @@ print("reading config variables")
 # the variables below will only be used by the requester API
 redis_host = get_conf_setting("redis_host", None)
 redis_port = get_conf_setting("redis_port", None)
-requester_webhook_host = get_conf_setting("requester_webhook_host", None)
-receiver_api_host = get_conf_setting("receiver_api_host", None)
+receiver_webhook_url = get_conf_setting("receiver_webhook_url", None)
+requester_webhook_url = get_conf_setting("requester_webhook_url", None)
 
 app = Flask(__name__)
-
 
 # if a redis is configured this must be an example requester API so connect to it
 if redis_port is not None and redis_host is not None:
@@ -77,17 +76,19 @@ def webhook():
 # example POC
 @app.route('/example', methods=["GET"])
 def example():
-    # TODO - finish
     # create a random unhashed one time use pass and a hash of it
-
+    unhashed_token = secrets.token_urlsafe()
+    hashed_token = hash_secret(unhashed_token)
     # setex the it into the DB with 600 seconds ttl
-
+    r.setex(hashed_token, 600, unhashed_token)
     # setex the url that the hash is going to be sent to into the DB with 600 seconds ttl
-
+    r.setex(hashed_token + "_url", 600, receiver_webhook_url)
     # send the request to the receiver API
-
+    payload = ""
+    headers = {'Authorization': "Webhook " + requester_webhook_url + " " + hashed_token}
+    response = requests.request("GET", receiver_webhook_url, data=payload, headers=headers)
     # display the result you got back from the receiver endpoint
-    return "auth works", 200
+    return response.json(), 200
 
 
 # used for when running with the 'ENV' envvar set to dev to open a new thread with flask builtin web server
