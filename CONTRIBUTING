@@ -1,0 +1,31 @@
+# How to contribute
+
+Being an open source project means any help offered will be greatly appreciated, below is a quick run through of how you
+can help
+
+## Getting Started
+
+* Fork the latest branch of the component you want to contribute to
+* Make sure you have a [GitHub account](https://github.com/signup/free)
+* Use virtualenv to install all requirements from the requirements.txt file, this may require having GCC compiler & libffi-dev depending on your environment setup due to gevent & bcrypt requiring compilation on some OS.
+* Fix the issue you want \ add a feature
+* Create a pull request
+
+### Documentation
+
+Being a POC there isn't much more then the readme, the /docs folder also includes the draw.io savefile of the workflow diagram.
+
+## What you can help with
+
+* Documentation - everyone hates them but without them would you be able to figure out how to use it?
+* Bug fixes / feature requests - anything off github issues lists
+* Submitting tickets - even if you don't have the time\knowledge to fix a bug just opening a github issue about it will greatly help
+* Suggesting improvements
+* Spreading the word
+
+### Summary
+
+* Your awesome for helping, thanks.
+
+P.S.
+Don't forget to add yourself to to CONTRIBUTORS.md file.
