@@ -1,6 +1,6 @@
 # webhook_auth_poc
 
-## API to API Authentication without the need of saving any secrets at all & without any preshared secrets!
+## API to API Authentication without the need of saving any preshared secrets at all!
 
 Python3 based proof of concept for a webhook\callback based authentication which allows any API to know that any other API is in fact who it claim it is without having to configure any preshared secrets between them (it ensures that the URL of the requester is really who he claim it is).
 
