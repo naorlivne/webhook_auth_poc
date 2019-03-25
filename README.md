@@ -41,7 +41,7 @@ there are 3 api endpoints available in this POC:
 
 * /receiver - used to simulate the receiver API
 * /webhook - used as the requester API webhook endpoint that is sent to the receiver API to confirm authentication against
-* /example - sending any request to the /example endpoint will trigger the server to try to authenticate against the `RECEIVER_WEBHOOK_URL` with the `REQUESTER_WEBHOOK_URL` being used as the callback URL
+* /example - sending a GET request to the /example endpoint will trigger the server to try to authenticate against the `RECEIVER_WEBHOOK_URL` with the `REQUESTER_WEBHOOK_URL` being used as the callback URL
 
 I used bcrypt in this POC but any secure hashing algorithm is possible to use provided that both sides of the authentication agreed on beforehand (bcrypt being the default algorithm used otherwise).
 
