@@ -1,6 +1,6 @@
 import redis, os, sys, secrets, requests
 from functions.hashing.hashing import *
-from flask import request, Flask, json
+from flask import request, Flask, json, jsonify
 
 
 # get setting from envvar with failover from config/conf.json file if envvar not set
@@ -51,13 +51,13 @@ def receiver():
         # if the unhashed token is in fact the same as the hashed one
         if check_secret_matches(response.text, auth_hashed_token):
             # if the hash and unhashed are of the same key it works and return a good reply
-            return "{\"allowed\": true}", 200
+            return jsonify({"allowed": True}), 200
         # otherwise return 401 and a message that it blocked the attempt
         else:
-            return "{\"allowed\": false}", 401
+            return jsonify({"allowed": False}), 401
     # otherwise return 401 and a message that it blocked the attempt
     else:
-        return "{\"allowed\": false}", 401
+        return jsonify({"allowed": False}), 401
 
 
 # the webhook endpoint - this is the api2api endpoint that the receiver endpoint will use to authenticate the request
@@ -76,7 +76,7 @@ def webhook():
         return unhashed.decode('utf-8'), 200
     # otherwise return not allowed
     else:
-        return "{\"allowed\": false}", 401
+        return jsonify({"allowed": False}), 401
 
 
 # the example endpoint - this is the endpoint a user will contact to check the auth works\doesn't works as part of the
@@ -95,7 +95,7 @@ def example():
     headers = {'Authorization': "Webhook " + requester_webhook_url + " " + hashed_token}
     response = requests.request("GET", receiver_webhook_url, data=payload, headers=headers)
     # display the result you got back from the receiver endpoint
-    return json.dumps(response.json()), response.status_code
+    return jsonify(response.json()), response.status_code
 
 
 # used for when running with the 'ENV' envvar set to dev to open a new thread with flask builtin web server
