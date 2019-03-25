@@ -74,4 +74,4 @@ start it by running first cloning the repo then running from the repo root folde
 * The hashing function used is secure (bcrypt in this POC)
 * Tokens are never reused.
 * The DNS registerer is secure (if someone where to manage to take control of the DNS registerer of either side he would effectively become the service for this case).
-* The backend DB (Redis in this POC) is secured.
+* The backend DB (Redis in this POC) is secured - even if broken all the hash tokens are used to authenticate a single request so the worry isn't that stealing them would allow an attacker to use them to replay a request but rather add his own token which he will then be able to use to make a single request imporsanating whatever API is using this backend DB.
