@@ -26,7 +26,7 @@ Attached below is a diagram of the workflow between all components:
 
 ![basic workflow diagram](docs/webhook_auth.jpg)
 
-If you prefer reading about Alice & Bob and how they use this to authenticate each other you can read about it at https://github.com/naorlivne/webhook_auth_poc but take into account that this authentication is designed for the web so some steps sounds a bit silly when using snail mail as the example.
+If you prefer reading about Alice & Bob and how they use this to authenticate each other you can read about it at https://github.com/naorlivne/webhook_auth_poc/blob/master/docs/webhook_callback_based_auth_process.md but take into account that this authentication is designed for the web so some steps sounds a bit silly when using snail mail as the example.
 
 ## POC specific info
 
