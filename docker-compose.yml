@@ -18,6 +18,8 @@ services:
 # "Alice" container which acts as a legitimate requester API
    alice:
      container_name: alice
+     depends_on:
+       - redis_alice
      hostname: alice
      image: naorlivne/webhook_auth_poc
      ports:
@@ -34,6 +36,8 @@ services:
    eve:
      container_name: eve
      hostname: eve
+     depends_on:
+       - redis_eve
      image: naorlivne/webhook_auth_poc
      ports:
        - "5001:80"
