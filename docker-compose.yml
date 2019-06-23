@@ -1,14 +1,14 @@
 version: '3'
 
 services:
-   # the redis backend DB for the alice container
+   # The redis backend DB for the alice container
    redis_alice:
      container_name: redis_alice
      hostname: redis_alice
      image: redis:4-alpine3.9
      restart: unless-stopped
 
-  # the redis backend DB for the eve container
+  # The redis backend DB for the eve container
    redis_eve:
      container_name: redis_eve
      hostname: redis_eve
