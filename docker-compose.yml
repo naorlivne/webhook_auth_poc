@@ -49,7 +49,7 @@ services:
        RECEIVER_WEBHOOK_URL: http://bob/receiver
        REQUESTER_WEBHOOK_URL: http://alice/webhook
 
-# a "Bob" container which acts as the receiver API
+# "Bob" container which acts as the receiver API
    bob:
      container_name: bob
      hostname: bob
