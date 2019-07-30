@@ -1,33 +1,18 @@
 import redis, os, sys, secrets, requests
 from functions.hashing.hashing import *
 from flask import request, Flask, json, jsonify
+from parse_it import ParseIt
 
 
-# get setting from envvar with failover from config/conf.json file if envvar not set
-# using skip rather then None so passing a None type will still pass a None value rather then assuming there should be
-# default value thus allowing to have No value set where needed (like in the case of registry user\pass)
-def get_conf_setting(setting, default_value=None):
-    try:
-        setting_value = os.getenv(setting.upper(), default_value)
-        if setting_value == "true":
-            return True
-        elif setting_value == "false":
-            return False
-    except Exception as e:
-        print(e, file=sys.stderr)
-        print("missing " + setting + " config setting", file=sys.stderr)
-        print("missing " + setting + " config setting")
-        os._exit(2)
-    return setting_value
-
-
-print("reading config variables")
 # the variables below will only be used by the requester API
-redis_host = get_conf_setting("redis_host", None)
-redis_port = get_conf_setting("redis_port", None)
-receiver_webhook_url = get_conf_setting("receiver_webhook_url", None)
-requester_webhook_url = get_conf_setting("requester_webhook_url", None)
+print("reading config variables")
+parser = ParseIt()
+redis_host = parser.read_configuration_variable("redis_host")
+redis_port = parser.read_configuration_variable("redis_port")
+receiver_webhook_url = parser.read_configuration_variable("receiver_webhook_url")
+requester_webhook_url = parser.read_configuration_variable("requester_webhook_url")
 
+# create flask app
 app = Flask(__name__)
 
 # if a redis is configured this must be an example requester API so connect to it
