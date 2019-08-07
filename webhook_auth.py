@@ -71,7 +71,7 @@ def example():
     # create a random unhashed one time use pass and a hash of it
     unhashed_token = secrets.token_urlsafe()
     hashed_token = hash_secret(unhashed_token)
-    # setex the it into the DB with 600 seconds ttl
+    # setex the token into the DB with 600 seconds ttl
     r.setex(hashed_token, 600, unhashed_token)
     # setex the url that the hash is going to be sent to into the DB with 600 seconds ttl
     r.setex(hashed_token + "_url", 600, receiver_webhook_url)
