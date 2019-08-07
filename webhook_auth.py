@@ -56,7 +56,7 @@ def webhook():
     # find the requested url that the hash was sent to and delete it from the backend db
     requested_url = r.get(request_dict["hash"] + "_url")
     r.delete(request_dict["hash"] + "_url")
-    # if it's in the db return it and the requested url is the same one as the one the request was sent to originally
+    # if it's in the db and the requested url is the same one as the one the request was sent to originally return it
     if (unhashed is not None) and (requested_url.decode('utf-8') == request.json["url"]):
         return unhashed.decode('utf-8'), 200
     # otherwise return not allowed
