@@ -60,7 +60,7 @@ The docker compose example includes 5 containers:
 * A "Bob" container which acts as the receiver API
 * A "Eve" container which acts as an attacker and tries to impersonate "Alice" webhook url (which will fail) + a backend redis DB container
 
-It's worth mentioning tha while Alice, Bob & Eve containers are all created from the same Docker image they don't share any data in any way outside of the HTTP requests they send to each other thus providing a realistic example of the authentication process between different API's.
+It's worth mentioning that while Alice, Bob & Eve containers are all created from the same Docker image they don't share any data in any way outside of the HTTP requests they send to each other thus providing a realistic example of the authentication process between different API's.
 
 start it by running first cloning the repo then running from the repo root folder `docker-compose up` and then you can:
 
