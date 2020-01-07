@@ -18,7 +18,7 @@ ply==3.11
 pycparser==2.19
 pyhcl==0.3.15
 python-dotenv==0.10.3
-PyYAML==5.2
+PyYAML==5.3
 redis==3.3.11
 requests==2.22.0
 six==1.13.0
