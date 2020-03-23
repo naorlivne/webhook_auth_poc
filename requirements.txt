@@ -16,7 +16,7 @@ MarkupSafe==1.1.1
 parse-it==3.4.0
 ply==3.11
 pycparser==2.20
-pyhcl==0.4.0
+pyhcl==0.4.1
 python-dotenv==0.12.0
 PyYAML==5.3
 redis==3.4.1
