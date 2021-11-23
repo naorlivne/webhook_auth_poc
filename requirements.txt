@@ -15,7 +15,7 @@ Jinja2==3.0.2
 MarkupSafe==2.0.1
 parse-it==2021.10.18.11.14
 ply==3.11
-pycparser==2.20
+pycparser==2.21
 pyhcl==0.4.4
 python-dotenv==0.19.2
 PyYAML==6.0
