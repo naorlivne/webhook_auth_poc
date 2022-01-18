@@ -19,7 +19,7 @@ pycparser==2.21
 pyhcl==0.4.4
 python-dotenv==0.19.2
 PyYAML==6.0
-redis==4.1.0
+redis==4.1.1
 requests==2.27.1
 six==1.16.0
 toml==0.10.2
