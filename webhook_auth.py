@@ -6,7 +6,7 @@ from parse_it import ParseIt
 
 # the variables below will only be used by the requester API
 print("reading config variables")
-parser = ParseIt()
+parser = ParseIt(config_location="config")
 redis_host = parser.read_configuration_variable("redis_host")
 redis_port = parser.read_configuration_variable("redis_port")
 receiver_webhook_url = parser.read_configuration_variable("receiver_webhook_url")
