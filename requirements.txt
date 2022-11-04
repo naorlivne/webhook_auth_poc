@@ -33,4 +33,4 @@ Werkzeug==2.2.2
 wrapt==1.14.1
 xmltodict==0.13.0
 zope.event==4.5.0
-zope.interface==5.5.0
+zope.interface==5.5.1
