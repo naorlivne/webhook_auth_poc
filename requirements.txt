@@ -28,7 +28,7 @@ redis==4.3.5
 requests==2.28.1
 six==1.16.0
 toml==0.10.2
-urllib3==1.26.13
+urllib3==1.26.14
 Werkzeug==2.2.2
 wrapt==1.14.1
 xmltodict==0.13.0
