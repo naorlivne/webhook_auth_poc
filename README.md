@@ -1,5 +1,8 @@
 # webhook_auth_poc
 
+Github actions auto dockerhub push status: [![CI/CD](https://github.com/naorlivne/webhook_auth_poc/actions/workflows/full_ci_cd_workflow.yml/badge.svg)](https://github.com/naorlivne/webhook_auth_poc/actions/workflows/full_ci_cd_workflow.yml)
+
+
 ## API to API Authentication without the need of any preshared secrets at all!
 
 Python3 based proof of concept for a webhook\callback based authentication which allows any API to know that any other API is in fact who it claim it is without having to configure any preshared secrets between them (it ensures that the URL of the requester is really who he claim it is).
