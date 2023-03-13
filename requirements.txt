@@ -10,7 +10,7 @@ Deprecated==1.2.13
 dpath==2.1.4
 Flask==2.2.2
 gevent==22.10.2
-greenlet==2.0.1
+greenlet==2.0.2
 gunicorn==20.1.0
 idna==3.4
 itsdangerous==2.1.2
