@@ -30,7 +30,7 @@ six==1.16.0
 toml==0.10.2
 urllib3==1.26.14
 Werkzeug==2.2.3
-wrapt==1.14.1
+wrapt==1.15.0
 xmltodict==0.13.0
 zope.event==4.6
 zope.interface==5.5.2
