@@ -32,5 +32,5 @@ urllib3==2.0.2
 Werkzeug==2.3.4
 wrapt==1.15.0
 xmltodict==0.13.0
-zope.event==4.6
+zope.event==5.0
 zope.interface==6.0
