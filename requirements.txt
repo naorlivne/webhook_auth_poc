@@ -21,7 +21,7 @@ parse-it==2023.5.30.9.12
 ply==3.11
 pycparser==2.21
 pyhcl==0.4.4
-pyparsing==3.0.9
+pyparsing==3.1.0
 python-dotenv==1.0.0
 PyYAML==6.0
 redis==4.6.0
