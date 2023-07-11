@@ -3,7 +3,7 @@ bcrypt==4.0.1
 certifi==2023.5.7
 cffi==1.15.1
 chardet==5.1.0
-charset-normalizer==3.1.0
+charset-normalizer==3.2.0
 click==8.1.4
 configobj==5.0.8
 Deprecated==1.2.14
