@@ -8,7 +8,7 @@ click==8.1.7
 configobj==5.0.8
 Deprecated==1.2.14
 dpath==2.1.6
-Flask==2.3.2
+Flask==2.3.3
 gevent==23.7.0
 greenlet==2.0.2
 gunicorn==21.2.0
