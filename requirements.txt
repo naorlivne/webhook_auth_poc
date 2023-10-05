@@ -9,7 +9,7 @@ configobj==5.0.8
 Deprecated==1.2.14
 dpath==2.1.6
 Flask==2.3.3
-gevent==23.9.0.post1
+gevent==23.9.1
 greenlet==2.0.2
 gunicorn==21.2.0
 idna==3.4
