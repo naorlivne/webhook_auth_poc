@@ -1,6 +1,6 @@
 async-timeout==5.0.1
 bcrypt==4.2.1
-certifi==2024.8.30
+certifi==2025.1.31
 cffi==1.17.1
 chardet==5.2.0
 charset-normalizer==3.4.0
