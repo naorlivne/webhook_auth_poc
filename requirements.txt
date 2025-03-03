@@ -6,7 +6,7 @@ chardet==5.2.0
 charset-normalizer==3.4.1
 click==8.1.8
 configobj==5.0.9
-Deprecated==1.2.15
+Deprecated==1.2.18
 dpath==2.2.0
 Flask==3.1.0
 gevent==24.11.1
