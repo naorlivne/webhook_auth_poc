@@ -17,7 +17,7 @@ itsdangerous==2.2.0
 Jinja2==3.1.5
 MarkupSafe==3.0.2
 packaging==25.0
-parse-it==2025.3.1.21.46
+parse-it==2025.9.14.13.29
 ply==3.11
 pycparser==2.22
 pyhcl==0.4.5
